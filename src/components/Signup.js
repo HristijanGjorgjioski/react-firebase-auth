@@ -1,11 +1,10 @@
-import { Alert } from 'bootstrap';
 import React, { useRef, useState } from 'react'
-import { Card, Button, Form } from 'react-bootstrap'
+import { Card, Button, Form, Alert } from 'react-bootstrap'
 
 import { useAuth } from '../contexts/AuthContext';
 
 const Signup = () => {
-    const { signup } = useAuth();
+    const { signup, currentUser } = useAuth();
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -36,6 +35,7 @@ const Signup = () => {
             <Card>
                 <Card.Body>
                     <h2 className="text-center mb-4">Sign Up</h2>
+                    {currentUser && currentUser.email}
                     {error && <Alert variant="danger">{error}</Alert>}
                     <Form onSubmit={handleSubmit}>
                         <Form.Group id="email">
